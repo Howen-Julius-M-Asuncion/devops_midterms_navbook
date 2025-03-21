@@ -17,9 +17,6 @@ jobs:
           flutter-version: "3.29.0"
           channel: stable
 
-      - name: Decode Keystore
-        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/upload-keystore.jks
-
       - name: Create Keystore Properties
         run: |
           echo "storeFile=upload-keystore.jks" > android/key.properties
@@ -32,7 +29,6 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
-
 
       - name: Install dependencies
         run: flutter pub get
@@ -68,6 +64,9 @@ jobs:
           path: |
             build/app/outputs/flutter-apk/app-release.apk
             build/app/outputs/bundle/release/app-release.aab
+
+      - name: Decode Play Store JSON Key
+        run: echo '${{ secrets.PLAY_STORE_JSON }}' | base64 --decode > play-store-key.json
 
       - name: Deploy to Play Store (Internal Testing)
         uses: r0adkll/upload-google-play@v1
