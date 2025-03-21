@@ -17,9 +17,6 @@ jobs:
           flutter-version: "3.29.0"
           channel: stable
 
-      - name: Decode Keystore
-        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/upload-keystore.jks
-
       - name: Create Keystore Properties
         run: |
           echo "storeFile=upload-keystore.jks" > android/key.properties
