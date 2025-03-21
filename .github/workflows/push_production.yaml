@@ -69,9 +69,6 @@ jobs:
             build/app/outputs/flutter-apk/app-release.apk
             build/app/outputs/bundle/release/app-release.aab
 
-      - name: Decode Play Store JSON Key
-        run: echo '${{ secrets.PLAY_STORE_JSON }}' | base64 --decode > play-store-key.json
-
       - name: Deploy to Play Store (Internal Testing)
         uses: r0adkll/upload-google-play@v1
         with:
