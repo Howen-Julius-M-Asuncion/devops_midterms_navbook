@@ -56,6 +56,7 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
     }
+
 }
 
 flutter {
